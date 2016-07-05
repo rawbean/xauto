@@ -20,9 +20,12 @@ var _ = require('lodash');
 exports.initLocals = function (req, res, next) {
 	res.locals.navLinks = [
 		{ label: '首页', key: 'home', href: '/' },
-		{ label: '博客', key: 'blog', href: '/blog' },
+		{ label: '观点', key: 'blog', href: '/blog' },
+		{ label: '业界', key: 'news', href: '/news' },
+		{ label: '厂商', key: 'company', href: '/company' },
+		{ label: '人物', key: 'person', href: '/person' },
 		//{ label: 'Gallery', key: 'gallery', href: '/gallery' },
-		{ label: '联系我', key: 'contact', href: '/contact' },
+		//{ label: '联系我', key: 'contact', href: '/contact' },
 	];
 	res.locals.user = req.user;
 	next();
@@ -49,7 +52,7 @@ exports.flashMessages = function (req, res, next) {
  */
 exports.requireUser = function (req, res, next) {
 	if (!req.user) {
-		req.flash('error', 'Please sign in to access this page.');
+		req.flash('error', '您需要登录后才能访问.');
 		res.redirect('/keystone/signin');
 	} else {
 		next();

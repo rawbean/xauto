@@ -55,7 +55,8 @@ html
 						ul.nav.navbar-nav.navbar-left
 							each link in navLinks
 								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-						//ul.nav.navbar-nav.navbar-right
+						ul.nav.navbar-nav.navbar-right
+							li: a(href="/aboutus") 关于我们
 						//	if user
 						//		if user.canAccessKeystone
 						//			li: a(href='/keystone') Open Keystone
@@ -85,6 +86,9 @@ html
 		.container: #footer
 
 			p XAUTO.ORG - 联网汽车智能与服务趋势探索
+			
+			p 
+				a(href="/contact") 联系我们
 			
 			//- You don't _have_ to include a link saying your site is powered by KeystoneJS, but we appreciate it!
 			p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a>.
