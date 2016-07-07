@@ -2,7 +2,11 @@ extends ../layouts/default
 
 mixin post(post)
 	.post(data-ks-editable=editable(user, {list: 'News', id: post.id}))
-		h2: a(href='/news/post/' + post.slug)= post.title
+		h2 
+			if post.content.url
+				a(href=post.content.url,target='_blank')= post.title
+			else
+				a(href='/news/post/' + post.slug)= post.title
 		p.lead.text-muted.text-thin
 			if post.publishedDate
 				| 发表时间 #{post._.publishedDate.format('MMMM Do, YYYY')} 
