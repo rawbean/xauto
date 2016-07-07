@@ -7,7 +7,7 @@ exports = module.exports = function (req, res) {
 	var locals = res.locals;
 
 	// Init locals
-	locals.section = 'person';
+	locals.section = 'technology';
 	locals.filters = {
 		category: req.params.category,
 	};
@@ -19,7 +19,7 @@ exports = module.exports = function (req, res) {
 	// Load all categories
 	view.on('init', function (next) {
 
-		keystone.list('PersonCategory').model.find().sort('name').exec(function (err, results) {
+		keystone.list('TechnologyCategory').model.find().sort('name').exec(function (err, results) {
 
 			if (err || !results.length) {
 				return next(err);
@@ -30,7 +30,7 @@ exports = module.exports = function (req, res) {
 			// Load the counts for each category
 			async.each(locals.data.categories, function (category, next) {
 
-				keystone.list('Person').model.count().where('categories').in([category.id]).exec(function (err, count) {
+				keystone.list('Technology').model.count().where('categories').in([category.id]).exec(function (err, count) {
 					category.postCount = count;
 					next(err);
 				});
@@ -45,7 +45,7 @@ exports = module.exports = function (req, res) {
 	view.on('init', function (next) {
 
 		if (req.params.category) {
-			keystone.list('PersonCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
+			keystone.list('TechnologyCategory').model.findOne({ key: locals.filters.category }).exec(function (err, result) {
 				locals.data.category = result;
 				next(err);
 			});
@@ -57,7 +57,7 @@ exports = module.exports = function (req, res) {
 	// Load the posts
 	view.on('init', function (next) {
 
-		var q = keystone.list('Person').paginate({
+		var q = keystone.list('Technology').paginate({
 				page: req.query.page || 1,
 				perPage: 10,
 				maxPages: 10,
@@ -80,5 +80,5 @@ exports = module.exports = function (req, res) {
 	});
 
 	// Render the view
-	view.render('person');
+	view.render('technology');
 };

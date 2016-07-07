@@ -1,15 +1,15 @@
 extends ../layouts/default
 
 mixin post(post)
-	.post(data-ks-editable=editable(user, {list: 'News', id: post.id}))
-		h2: a(href='/news/post/' + post.slug)= post.title
+	.post(data-ks-editable=editable(user, {list: 'Technology', id: post.id}))
+		h2: a(href='/technology/post/' + post.slug)= post.title
 		p.lead.text-muted.text-thin
 			if post.publishedDate
 				| 发表时间 #{post._.publishedDate.format('MMMM Do, YYYY')} 
 			if post.categories && post.categories.length
 				| 分类 
 				each cat, i in post.categories
-					a(href='/news/' + cat.key)= cat.name
+					a(href='/technology/' + cat.key)= cat.name
 					if i < post.categories.length - 1
 						| , 
 					else
@@ -20,9 +20,7 @@ mixin post(post)
 			img(src=post._.image.fit(160, 160)).img.pull-right
 		p!= post.content.brief
 		if post.content.extended
-			p.read-more: a(href='/news/post/' + post.slug) 阅读详情...
-		else if post.content.url
-			p.read-more: a(href=post.content.url,target='_blank') 阅读详情...
+			p.read-more: a(href='/technology/post/' + post.slug) 阅读详情...
 
 block intro
 	.container
@@ -44,7 +42,7 @@ block content
 							strong #{data.posts.total}
 							|  篇文章.
 					else
-						h4.text-weight-small  #{utils.plural(data.posts.results.length, '[*/文章数]')}
+						h4.text-weight-normal  #{utils.plural(data.posts.results.length, '[*/文章数]')}
 					.blog
 						each post in data.posts.results
 							+post(post)
@@ -70,8 +68,8 @@ block content
 
 		if data.categories.length
 			.col-sm-4.col-md-3
-				h2 新闻分类
+				h2 技术分类
 				.list-group(style='margin-top: 70px;')
-					a(href='/news', class=!data.category ? 'active' : false).list-group-item 所有分类
+					a(href='/technology', class=!data.category ? 'active' : false).list-group-item 所有分类
 					each cat in data.categories
-						a(href='/news/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name
+						a(href='/technology/' + cat.key, class=data.category && data.category.id == cat.id ? 'active' : false).list-group-item= cat.name

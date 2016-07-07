@@ -47,10 +47,10 @@ Enquiry.schema.methods.sendNotificationEmail = function (callback) {
 		}).send({
 			to: admins,
 			from: {
-				name: 'XAUTO-YO',
-				email: 'contact@xauto-yo.com',
+				name: 'XAUTO',
+				email: 'contact@xauto.org',
 			},
-			subject: 'New Enquiry for XAUTO-YO',
+			subject: 'XAUTO咨询',
 			enquiry: enquiry,
 		}, callback);
 	});
