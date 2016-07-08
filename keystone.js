@@ -73,7 +73,8 @@ keystone.set('nav', {
 	news: ['news','news-categories'],
 	company: ['Company','company-categories'],
 	person: ['Person','person-categories'],
-	technology: ['Technology','technology-categories']
+	technology: ['Technology','technology-categories'],
+	download: ['Files','files-categories']
 });
 
 // Start Keystone to connect to your database and initialise the web server

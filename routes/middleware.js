@@ -25,6 +25,7 @@ exports.initLocals = function (req, res, next) {
 		{ label: '厂商', key: 'company', href: '/company' },
 		{ label: '人物', key: 'person', href: '/person' },
 		{ label: '技术', key: 'technology', href: '/technology' },
+		{ label: '文件', key: 'files', href: '/files' }
 		//{ label: 'Gallery', key: 'gallery', href: '/gallery' },
 		//{ label: '联系我', key: 'contact', href: '/contact' },
 	];

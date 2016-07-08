@@ -47,6 +47,8 @@ exports = module.exports = function (app) {
 	app.get('/person/post/:post', routes.views.personPost);
 	app.get('/technology/:category?', routes.views.technology);
 	app.get('/technology/post/:post?', routes.views.technologyPost);
+	app.get('/files/:category?', routes.views.files);
+	app.get('/files/post/:post?', routes.views.filesPost);
 	app.get('/donate', routes.views.donate);
 	app.all('/contact', routes.views.contact);
 
