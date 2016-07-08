@@ -15,6 +15,7 @@ html
 		//- Customise the stylesheet for your site by editing /public/styles/site.less
 		//- All .less files will be automatically compiled and minified in production.
 		link(href="/styles/site.min.css", rel="stylesheet")
+		link(href="/styles/themes/Yeti.min.css", rel="stylesheet")
 
 		//- This file provides the default styling for the KeystoneJS Content Editor
 		if user && user.canAccessKeystone
@@ -39,34 +40,34 @@ html
 	//- HTML BODY
 	body
 
+		nav.navbar.navbar-default.navbar-fixed-top
+			.container
+				.navbar-header
+					button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar-collapse', aria-expanded='false')
+						span.sr-only Toggle navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href='/') XAUTO
+				.collapse.navbar-collapse#navbar-collapse
+					ul.nav.navbar-nav.navbar-left
+						each link in navLinks
+							li(class=(section === link.key ? 'active' : null)): a(href=link.href)= link.label
+					ul.nav.navbar-nav.navbar-right
+						if themes && themes.length
+							li.dropdown
+								a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-haspopup="true", aria-expanded="false")
+									| Themes 
+									span.caret
+								ul.dropdown-menu
+									each theme in themes
+										li(class=currentTheme === theme ? 'active' : '')
+											a(href='?theme=' + theme)= theme
+
 		//- HEADER
 		#header: .container
 
-			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
-			//- ... or completely change this header to suit your design.
-
-			div(role="navigation").navbar.navbar-default
-				.container-fluid
-					.navbar-header
-						button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-							span.sr-only Toggle navigation
-							span.icon-bar
-							span.icon-bar
-							span.icon-bar
-						a.navbar-brand(href='/') XAUTO
-					.collapse.navbar-collapse
-						ul.nav.navbar-nav.navbar-left
-							each link in navLinks
-								li(class=(section == link.key ? 'active' : null)): a(href=link.href)= link.label
-						ul.nav.navbar-nav.navbar-right
-							li: a(href="/aboutus") 关于我们
-						//	if user
-						//		if user.canAccessKeystone
-						//			li: a(href='/keystone') Open Keystone
-						//		li: a(href='/keystone/signout') Sign Out
-						//	else
-						//		li: a(href='/keystone/signin') Sign In
-
+			
 		//- BODY
 		#body
 

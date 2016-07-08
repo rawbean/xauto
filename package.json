@@ -1,12 +1,12 @@
 {
   "name": "xauto",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "async": "^1.5.0",
     "dotenv": "^2.0.0",
     "gentelella": "^1.3.0",
-    "keystone": "^0.3.19",
+    "keystone": "0.3.21",
     "lodash": "^4.13.1"
   },
   "devDependencies": {

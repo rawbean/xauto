@@ -2,25 +2,15 @@ extends ../layouts/default
 
 mixin post(post)
 	.post(data-ks-editable=editable(user, { list: 'Post', id: post.id }))
-		h2: a(href='/blog/post/' + post.slug)= post.title
-		p.lead.text-muted.text-thin
-			if post.publishedDate
-				| 发表时间 #{post._.publishedDate.format('MMMM Do, YYYY')} 
-			if post.categories && post.categories.length
-				| 分类 
-				each cat, i in post.categories
-					a(href='/blog/' + cat.key)= cat.name
-					if i < post.categories.length - 1
-						| , 
-					else
-						|  
-			if post.author
-				| 作者 #{post.author.name.first}
 		if post.image.exists
 			img(src=post._.image.fit(160,160)).img.pull-right
+		h3
+			a(href='/blog/post/' + post.slug)= post.title
 		p!= post.content.brief
 		if post.content.extended
-			p.read-more: a(href='/blog/post/' + post.slug) 阅读详情...
+			ul.list-inline
+				li.read-more: a(href='/blog/post/' + post.slug) 阅读详情...
+				li 
 
 block intro
 	.container
@@ -41,8 +31,6 @@ block content
 							|  / 
 							strong #{data.posts.total}
 							|  篇文章.
-					else
-						h4.text-weight-normal  #{utils.plural(data.posts.results.length, '[*/文章数]')}
 					.blog
 						each post in data.posts.results
 							+post(post)
